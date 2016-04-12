@@ -1,0 +1,30 @@
+#board {
+	margin: 0px auto 20px;
+	padding: 20px;
+	border: 2px solid #E7E7E7;
+	background-color: #F8F8F8;
+}
+
+#boardHeaders {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+	#boardHeaders span {
+		margin-right: 10px;
+		font-size: 1.3em;
+		font-weight: bold;
+		display: inline-block;
+	}
+
+	#boardHeaders span:last-child {
+		font-size: 1em;
+		font-weight: normal;
+		display: block;
+	}
+.outerLeftBoard, .outerRightBoard {
+	display: inline-block;
+	vertical-align: top;
+	width: 500px;
+	margin: 0px auto;
+}
