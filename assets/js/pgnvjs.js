@@ -17796,6 +17796,8 @@ function StringBuilder(value) {
     }
 }
 
+// YY: Array to store header and pgn information
+var pgnData = [];
 
 
 var pgnReader = function (configuration) {
@@ -18212,7 +18214,7 @@ var pgnReader = function (configuration) {
         eachMoveVariation(that.movesMainLine, 0, null);
     };
     load_pgn();
-    console.log(that);
+
 
     /**
      * Adds the move to the current state after moveNumber.
@@ -18347,6 +18349,8 @@ var pgnReader = function (configuration) {
         var move = getMove(moveNumber);
         move.nag = [];
     };
+
+    pgnData.push(that.headers);
 
     // This defines the public API of the pgn function.
     return {
@@ -20326,6 +20330,14 @@ var pgnBase = function (boardId, configuration) {
             $("#" + buttonsId + name).attr("title", title);
             return button;
         }
+        // YY: Generates the reset/save buttons (only)
+        var generateSaveButtons = function(buttonDiv) {
+            ["reset", "save"].forEach(function(entry) {
+            	var button = createEle("button", buttonsId + entry, "button " + entry, null, buttonDiv);
+            	$("#" + buttonsId + entry).html(entry);
+                // addButton(entry, buttonDiv)
+            });
+        };
         // Generates the view buttons (only)
         var generateViewButtons = function(buttonDiv) {
             ["flipper", "first", "prev", "next", "play", "last"].forEach(function(entry) {
@@ -20364,7 +20376,8 @@ var pgnBase = function (boardId, configuration) {
             divBoard.style.width = 'configuration.size';
         }
         divBoard.setAttribute('class', theme + ' whole container_fluid');
-        createEle("div", headersId, "headers", theme, divBoard);
+        var headerButtonDiv = createEle("div", "headerButton", "headers", theme, divBoard);
+        generateSaveButtons(headerButtonDiv);
         createEle("div", headersId, "headers", theme, divBoard);
         var row = createEle("div", "row", "row", theme, divBoard);
         var outerInnerLeftBoardDiv = createEle("div", null, "outerLeftBoard col-md-6", null, row);
@@ -20730,6 +20743,16 @@ var pgnBase = function (boardId, configuration) {
                 showPgn(str);
                 $("#" + boardId + " .outerpgn").toggle(200);
             });
+            // $('#' + buttonsId + 'reset').on('click', function() {
+            //     load_pgn();
+            // });
+            $('#' + buttonsId + 'save').on('click', function() {
+            	if(pgnData.length == 2)
+            	{
+            		pgnData.pop();
+            	}
+                pgnData.push(that.mypgn.write_pgn());
+            });
             // YY: hidePGN button is unnecessary because of toggle on pgn button.
             // $('#' + boardId + " .hidePGN").on("click", function () {
             //     $( "#" + boardId + " .outerpgn").hide( "fold");
@@ -20822,8 +20845,9 @@ var pgnBase = function (boardId, configuration) {
                 }
             });
         });
+        console.log("pgn is" + computePgn());
     };
-
+    // console.log(that);
     return {
         // PUBLIC API
         chess: game,

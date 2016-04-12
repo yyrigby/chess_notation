@@ -34,6 +34,10 @@
         $('.afterComment').attr('checked', "checked");
         $('.commentRadio').hide();
 
+        $('#boardButtonreset').on('click', function() {
+            window.location.reload(true);
+        });
+
     });
 </script>
 </body>
