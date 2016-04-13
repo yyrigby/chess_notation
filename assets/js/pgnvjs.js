@@ -17827,8 +17827,8 @@ var pgnReader = function (configuration) {
         // from here, the keys are optional, order may be different
         Board: "the board number in a team event",
         ECO: "ECO-Opening-Key (ECO = 'Encyclopaedia of Chess Openings')",
-        WhitemyELO: "myELO-score white (at the beginning of the game)",
-        BlackmyELO: "myELO-score black (at the beginning of the game)",
+        WhiteELO: "myELO-score white (at the beginning of the game)",
+        BlackELO: "myELO-score black (at the beginning of the game)",
         WhiteDays: "rate in days for white",
         BlackDays: "rate in days for black",
         myChessNo: "identification-no. of the game on the myChess.de - server",
@@ -20845,9 +20845,7 @@ var pgnBase = function (boardId, configuration) {
                 }
             });
         });
-        console.log("pgn is" + computePgn());
     };
-    // console.log(that);
     return {
         // PUBLIC API
         chess: game,
