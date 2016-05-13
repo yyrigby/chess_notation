@@ -18351,6 +18351,7 @@ var pgnReader = function (configuration) {
     };
 
     pgnData.push(that.headers);
+    // console.log(that);
 
     // This defines the public API of the pgn function.
     return {
@@ -20743,9 +20744,9 @@ var pgnBase = function (boardId, configuration) {
                 showPgn(str);
                 $("#" + boardId + " .outerpgn").toggle(200);
             });
-            // $('#' + buttonsId + 'reset').on('click', function() {
-            //     load_pgn();
-            // });
+            $('#' + buttonsId + 'reset').on('click', function() {
+                console.log('reset button');
+            });
             $('#' + buttonsId + 'save').on('click', function() {
             	if(pgnData.length == 2)
             	{

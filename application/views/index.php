@@ -1,54 +1,82 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
-    <title>Game Notation</title>
-
-    <!-- Libraries Js from PgnViewerJS -->
-    <script src="assets/js/pgnvjs.js" type="text/javascript"></script>
-
-    <!-- CSS used -->
-    <link rel="stylesheet" href="assets/css/pgnvjs.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
-
+<head>
+	<title>Al's Chess Notation</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="../../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../assets/css/normalize.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../../assets/css/styles.css">
+	<script>
+	$(document).ready(function() {
+		$('#signin_below').click(function(){
+			$("html, body").animate({ scrollTop: $(document).height() }, "slow");
+		    $('#signin_email').focus();
+		});
+	});
+	</script>
 </head>
 <body>
-<div id="results">
-</div>
-<div id="board" style="width: 500px"></div>
-<script>
-    $(document).ready(function() {
-        var pgn = '[Event "WA K-12 Scholastic"]\
-        [Site "Interlake High School"]\
-        [Date "2016.04.16"]\
-        [Round "1"]\
-        [White "Jeffrey Kou"]\
-        [Black "Alden Rigby"]\
-        [WhiteELO "1500"]\
-        [BlackELO "1501"]\
-        [Result "0-1"]\
-        1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.Nf3 O-O 5.e4 d6 6.Be2 c5 7.d5 e6 8.dxe6 Bxe6 9.Bg5 Qa5 10.Qc2 Nxe4 11.O-O Nxc3 12.bxc3 Qxc3 13.Qxc3 Bxc3 14.Rad1 b5 15.cxb5 Bxa2 16.Rxd6 Re8 17.b6 axb6 18.Bh6 f6 19.Bb5 Re7 20.Rd7 Nxd7 21.Bxd7 Ra7 {I should have played Rxe7 winning a piece back.} 22.Bb5 Ra5 23.Be2 Re8 24.Bd3 c4 25.Rc1 Bb3 26.Bxc4+ Bxc4 27.Rxc3 g5 28.h3 Bd5 29.Rc7 Bxf3 30.gxf3 Re1+ 31.Kg2 Raa1 32.f4 gxf4 33.Bxf4 b5 34.Bd2 Reb1 35.Bc3 Rg1+ 36.Kh2 Rh1+ 37.Kg3 Rac1 38.Rc5 f5 39.h4 h5 40.Bb4 Rxc5 41.Bxc5 f4+ 42.Kxf4 Rxh4+ 43.Kg3 Rg4+ 44.Kh3 b4 45.Bd6 b3 46.Ba3 Ra4 47.Bc1 Ra2 48.Kh4 b2 49.Bxb2 Rxb2 50.Kxh5 Rxf2 { White resigned. } \
-        ';
-        var cfg = { position: '',
-            pgn: pgn, locale: 'en', pieceStyle: 'merida' };
-        var board = pgnEdit('board', cfg);
-        
-        $('#board').attr('style', "width: 80%");
-
-        // automatically adds all comments after the selected move
-        $('.afterComment').attr('checked', "checked");
-        $('.commentRadio').hide();
-
-        $('#boardButtonreset').on('click', function() {
-            window.location.reload(true);
-        });
-
-        $(document).on('click','#boardButtonsave', function() {
-            $.post('main/update_game', { "header": pgnData[0], "pgn": pgnData[1] }, function(event) {
-                    $('#results').html(event);
-                });
-        });
-
-    });
-</script>
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Al's Chess Notations</h1>
+			<div class="row">
+				<p class="col-sm-6 col-md-8">Welcome! Al's Chess Notation is an online platform that allows you to load/save your pgn and add comments/notes to allow easy self-analysis of your chess games.</p>
+			</div>
+			<p><a id="signin_below" class="btn btn-primary btn-lg" role="button">Sign in Below</a></p>
+			<p><a href="/notate" id="big_button" class="btn btn-primary btn-lg" role="button">Notate without Signing In</a></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="box col-md-6">
+			<div id="panel_box" class="panel panel-info">
+				<div id="panel_heading" class="signin_heading panel-heading">
+					<h3 class="panel-title">Sign in</h3>
+				</div>
+				<div class="panel-body">
+	<?php
+		if($this->session->flashdata('error_signin')){
+			echo "<div class='error'>" . $this->session->flashdata('error_signin') . "</div>";
+		}
+		?>
+					<form action="/users/signin" method="post">
+						<label>Email Address:</label>
+						<input id="signin_email" type="text" name="email">
+						<label>Password:</label>
+						<input type="password" name="password">
+						<input type="submit" class="btn btn_default btn_yellow" value="Sign In">
+					</form>
+				</div>
+			</div>
+		</div> <!-- End of Wrapper Sign in -->
+		<div class="box col-md-6">
+			<div id="panel_box2" class="panel panel-info">
+				<div id="panel_heading2" class="signin_heading panel-heading">
+					<h3 class="panel-title">Register</h3>
+				</div>
+				<div class="panel-body">
+	<?php
+		if($this->session->flashdata('error_register')){
+			echo "<div class='error'>" . $this->session->flashdata('error_register') . "</div>";
+		}
+	?>
+			<form action="/users/register" method="post">
+				<label>Email Address:</label>
+				<input type="text" name="email">
+				<label>First Name:</label>
+				<input type="text" name="first_name">
+				<label>Last Name:</label>
+				<input type="text" name="last_name">
+				<label>Password:</label>
+				<input type="password" name="password">
+				<label>Password Confirmation:</label>
+				<input type="password" name="confirm_password">
+				<input type="submit" class="btn btn_default btn_yellow" value="Create">
+			</form>
+		</div> <!-- End of Wrapper Register -->
+	</div>
 </body>
 </html>

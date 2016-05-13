@@ -1,0 +1,33 @@
+<<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script>
+( function( ) {
+   console.log( "I'm an immediate function!" );
+} ( ) );
+( function (param1, param2) {
+   console.log( "I'm an immediate function!" );
+} ) ( arg1, arg2 ) ;
+
+
+
+// Here we are just getting the button element by its id and then storing the element in the variable button
+var button = document.getElementById("someButton")
+// now we can run methods on button
+// there is a js method called "addEventListener" that does exactly what you expect! It adds a listener! It takes in 2 parameters 1) the event to listen for and 2) the list of instructions to run once the event is triggered (callback)
+button.addEventListener("click", whatToDoOnClick)
+// here we define the whatToDoOnClick function
+function whatToDoOnClick() {
+  alert("You Did it!")
+}
+
+</script>
+
+</body>
+</html>
+
+

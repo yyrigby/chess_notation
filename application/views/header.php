@@ -22,13 +22,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Al's Chess Notation</a>
+      <a class="navbar-brand" href="/my_games">Al's Chess Notation</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
 		<ul class="nav navbar-nav">
-	        <li class="navbar-left"><a href="/dashboard">My Games</a></li>
-	        <li class="navbar-left"><a href="/users/edit">Recommended Games</a></li>
+	        <li class="navbar-left"><a href="/my_games">My Games</a></li>
+	        <!-- <li class="navbar-left"><a href="/users/edit">Recommended Games</a></li> -->
 	    </ul>
 	    <p class="navbar-text navbar-right"><a href="/profile" class="navbar-link">Profile</a></p>
 		<p class="navbar-text navbar-right"><a href="/logoff" class="navbar-link">Log Off</a></p>

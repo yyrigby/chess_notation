@@ -16,6 +16,7 @@
 | environments.
 |
 */
+// $config['base_url'] = "http://52.39.210.162/";
 $config['base_url'] = "http://".$_SERVER['HTTP_HOST'];
 
 /*
