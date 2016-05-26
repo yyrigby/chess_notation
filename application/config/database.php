@@ -4,9 +4,12 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = 'root';
-$db['default']['database'] = 'chess_notations';
+// $db['default']['username'] = 'root';
+// $db['default']['password'] = 'root';
+$db['default']['username'] = 'angelort_lds';
+$db['default']['password'] = 'K6Bd5&FS%-$H';
+$db['default']['database'] = 'angelort_chess_notation';
+// $db['default']['database'] = 'chess_notations';
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

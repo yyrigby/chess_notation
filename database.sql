@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `chess_notations` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `chess_notations`;
+CREATE DATABASE  IF NOT EXISTS `angelort_chess_notation` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `angelort_chess_notation`;
 -- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
--- Host: localhost    Database: chess_notations
+-- Host: localhost    Database: angelort_chess_notation
 -- ------------------------------------------------------
 -- Server version	5.5.41-log
 
